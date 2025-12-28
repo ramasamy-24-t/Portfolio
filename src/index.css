@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+:root {
+  --bg-dark: #0f0c29;
+  --bg-light: #302b63;
+  --nav-bg: rgba(15, 12, 41, 0.9);
+  --text-main: #ffffff;
+  --text-muted: #d1d1e0;
+  --accent: #0dff05fd;     
+  --accent-glow: rgba(26, 255, 0, 0.866); 
+}
+
+@theme {
+  /* Mapping your :root variables to Tailwind classes */
+  --color-bg-dark: var(--bg-dark);
+  --color-bg-light: var(--bg-light);
+  --color-nav-bg: var(--nav-bg);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  
+  /* Adding your custom glow as a shadow */
+  --shadow-accent-glow: 0 0 15px var(--accent-glow);
+}
