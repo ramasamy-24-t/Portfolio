@@ -10,7 +10,7 @@ export default function Home(){
                 <img src={Ram} className='rounded-2xl w-32 h-32 md:w-52 md:h-52 object-cover shadow-2xl border-2 border-accent/20'/>
             </div>
             <div className="text-center mt-4">
-                <h1 className='font-mono text-2xl md:text-3xl tracking-tight block'>Ramasamy T</h1>
+                <h1 className='font-mono text-accent block'>Ramasamy T</h1>
                 <h2 className='text-lg md:text-xl text-accent font-medium mt-1'>Developer</h2>
                 <div className='flex justify-center gap-4 mt-8'>
                     <a 
