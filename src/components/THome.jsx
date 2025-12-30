@@ -41,7 +41,7 @@ export default function Home(){
         <div className="flex flex-col flex-1 gap-6 justify-center items-center">    
             <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 md:p-14 w-full max-w-4xl border border-white/5 shadow-2xl flex flex-col items-center justify-center">
                 <h1 className='text-3xl md:text-5xl lg:text-6xl leading-tight text-center mb-6'>
-                    Hi there, this is <span className='text-accent font-mono block'>Ramasamy T</span>
+                    Hi there, this is <h1 className='text-accent font-mono block'>Ramasamy T</h1>
                 </h1>
                 <p className='text-center text-zinc-400 font-mono text-sm md:text-base leading-relaxed max-w-2xl'>
                     At the intersection of AI and modern web technologies, I’m on a journey of learning, 
