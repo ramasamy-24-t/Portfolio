@@ -54,8 +54,8 @@ To run this project locally, follow these steps:
     npm run dev
 
 ## 📬 Contact
-LinkedIn:"https://www.linkedin.com/in/ramasamy-24-t"
-GitHub:"https://github.com/ramasamy-24-t"
-Email:rsamy2426@gmail.com
+LinkedIn: https://www.linkedin.com/in/ramasamy-24-t  
+GitHub: https://github.com/ramasamy-24-t  
+Email: rsamy2426@gmail.com
 
 Created with ❤️ by Ramasamy T
