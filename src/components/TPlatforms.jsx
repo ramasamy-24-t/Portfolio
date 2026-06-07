@@ -1,102 +1,108 @@
-import linkedinIcon from '../assets/Icons/linkedin.svg'
-import githubIcon from '../assets/Icons/github.svg'
-import leetcodeIcon from '../assets/Icons/leetcode.png'
-import codechefIcon from '../assets/Icons/codechef.png'
-import codeforcesIcon from '../assets/Icons/codeforces.png'
+import { motion } from 'framer-motion';
+import platformIcon from '../assets/Icons/platform1.svg';
+import { codingPlatforms } from '../data/platforms';
+import ScrollReveal from './ScrollReveal';
+import { staggerContainer, fadeUpItem } from '../utils/animations';
 
-function Platforms() {
-    const codingData = [
-        { 
-            name: "LeetCode", 
-            icon: leetcodeIcon, 
-            rating: "1606", 
-            rank: "2,29,088", 
-            url: "https://leetcode.com/u/ramasamy-24-t/", 
-            glow: "hover:shadow-[0_0_30px_rgba(255,161,22,0.2)]",
-            borderColor: "hover:border-[#FFA116]/50"
-        },
-        { 
-            name: "CodeChef", 
-            icon: codechefIcon, 
-            rating: "1442", 
-            rank: "41,077", 
-            url: "https://www.codechef.com/users/kit28aiml049",
-            glow: "hover:shadow-[0_0_30px_rgba(91,70,56,0.2)]",
-            borderColor: "hover:border-[#5B4638]/50"
-        },
-        { 
-            name: "Codeforces", 
-            icon: codeforcesIcon, 
-            rating: "1086", 
-            rank: "92,675", 
-            url: "https://codeforces.com/profile/ramasamy-24-t",
-            glow: "hover:shadow-[0_0_30px_rgba(31,138,203,0.2)]",
-            borderColor: "hover:border-[#1F8ACB]/50"
-        }
-    ];
+const tile =
+  'bg-white/10 backdrop-blur-md rounded-xl lg:rounded-2xl border border-white/10';
 
-    return (
-        <div className="min-h-screen w-full flex flex-col items-center justify-center bg-bg-dark p-6 md:p-12">
-            
-            <div className="text-center mb-16">
-                <h1 className="text-5xl font-mono text-white mb-4 tracking-tight">
-                    Coding <span className="text-accent">Platforms</span>
-                </h1>
-                <p className="text-zinc-400 font-mono italic">Where logic meets competitive spirit</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl mb-20">
-                {codingData.map((platform) => (
-                    <a 
-                        key={platform.name}
-                        href={platform.url}
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className={`group bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-[2.5rem] flex flex-col items-center transition-all duration-500 hover:-translate-y-2 cursor-pointer ${platform.glow} ${platform.borderColor}`}
-                    >
-                        <img src={platform.icon} className="h-16 mb-6 bg-white p-2 rounded-2xl group-hover:scale-110 transition-transform duration-300" alt={platform.name} />
-                        
-
-                        <div className="w-full space-y-4">
-                            <div className="flex justify-between items-center border-b border-white/5 pb-2">
-                                <span className="text-zinc-500 text-xs uppercase tracking-widest font-bold">Max Rating</span>
-                                <span className="text-accent font-mono text-xl">{platform.rating}</span>
-                            </div>
-                            <div className="flex justify-between items-center">
-                                <span className="text-zinc-500 text-xs uppercase tracking-widest font-bold">Global Rank</span>
-                                <span className="text-white font-mono">{platform.rank}</span>
-                            </div>
-                        </div>
-                    </a>
-                ))}
-            </div>
-
-            <div className="w-full max-w-2xl">
-                <h2 className="text-center text-white text-sm uppercase tracking-[0.3em] font-bold mb-8">Social Connect</h2>
-                <div className="flex flex-col md:flex-row gap-6 justify-center">
-                    <a 
-                        href="https://linkedin.com/in/ramasamy-24-t" 
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-4 py-4 px-8 bg-white/5 border border-white/10 rounded-2xl hover:bg-[#0077B5]/10 hover:border-[#0077B5] transition-all group"
-                    >
-                        <img src={linkedinIcon} className="h-6 invert group-hover:invert-0 transition-all" alt="LinkedIn" />
-                        <span className="font-bold text-zinc-400 group-hover:text-white">LinkedIn</span>
-                    </a>
-
-                    <a 
-                        href="https://github.com/ramasamy-24-t" 
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-4 py-4 px-8 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 hover:border-white transition-all group"
-                    >
-                        <img src={githubIcon} className="h-6 invert group-hover:invert-0 transition-all" alt="GitHub" />
-                        <span className="font-bold text-zinc-400 group-hover:text-white">GitHub</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    );
+function Label({ children }) {
+  return (
+    <span className="text-accent font-mono text-xs font-bold uppercase tracking-wide">
+      {children}
+    </span>
+  );
 }
 
-export default Platforms;
+function PlatformCard({ platform }) {
+  return (
+    <motion.a
+      href={platform.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      variants={fadeUpItem}
+      className={`${tile} group block p-5 md:p-6 hover:bg-white/[0.14] hover:-translate-y-1 transition-all duration-300 ${platform.hoverBorder} ${platform.hoverGlow}`}
+    >
+      <div
+        className="h-1 w-full rounded-full mb-5 opacity-60 group-hover:opacity-100 transition-opacity"
+        style={{ backgroundColor: platform.accentColor }}
+      />
+
+      <div className="flex items-center gap-4 mb-5">
+        <img
+          src={platform.icon}
+          className="h-12 md:h-14 w-12 md:w-14 bg-white p-1.5 rounded-xl object-contain group-hover:scale-110 transition-transform duration-300"
+          alt={platform.name}
+        />
+        <h2 className="text-white font-mono text-lg md:text-xl leading-tight group-hover:text-accent transition-colors">
+          {platform.name}
+        </h2>
+      </div>
+
+      <div className="space-y-3 border-t border-white/10 pt-4 font-mono">
+        <div className="flex justify-between items-center gap-4">
+          <Label>Max Rating</Label>
+          <span className="text-white text-lg md:text-xl font-medium">{platform.rating}</span>
+        </div>
+        <div className="flex justify-between items-center gap-4">
+          <Label>Global Rank</Label>
+          <span className="text-zinc-300 text-sm md:text-base">{platform.rank}</span>
+        </div>
+      </div>
+
+      <p className="mt-5 pt-4 border-t border-white/10 font-mono text-xs md:text-sm text-zinc-400 group-hover:text-accent transition-colors flex items-center gap-1">
+        View profile
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="group-hover:translate-x-0.5 transition-transform"
+        >
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </p>
+    </motion.a>
+  );
+}
+
+export default function Platforms() {
+  return (
+    <div className="w-full min-h-screen bg-bg-dark px-4 py-10 md:py-14 lg:px-8">
+      <div className="max-w-6xl xl:max-w-7xl mx-auto">
+        <ScrollReveal className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-10 md:mb-14">
+          <div className="text-center lg:text-left">
+            <h1 className="text-4xl md:text-5xl text-white font-mono mb-3">Platforms</h1>
+            <p className="font-mono text-zinc-400 text-sm md:text-base max-w-xl mx-auto lg:mx-0">
+              Competitive programming profiles where I sharpen problem-solving and DSA skills.
+            </p>
+          </div>
+          <img
+            src={platformIcon}
+            className="h-32 md:h-40 lg:h-44 w-auto mx-auto lg:mx-0 flex-shrink-0 opacity-90 invert"
+            alt="Platforms illustration"
+          />
+        </ScrollReveal>
+
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-40px' }}
+        >
+          {codingPlatforms.map((platform) => (
+            <PlatformCard key={platform.id} platform={platform} />
+          ))}
+        </motion.div>
+      </div>
+    </div>
+  );
+}
